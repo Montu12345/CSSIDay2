@@ -1,2 +1,3 @@
 # CSSIDay2
-have to edit the pictures that get added in
+own-image: each letter of the google logo is boucing around the screen.
+script: the DVD logo is bouncing around the screen.
