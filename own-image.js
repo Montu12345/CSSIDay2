@@ -173,7 +173,7 @@ let gUpperImageX
    image(eImage, eImageX, eImageY, imageWidth, imageHeight);
    
    
-   //detecting collisions between the images:
+   //detecting collisions between the images; if there is one then change the velocities of the images.
    if (rectIntersect(gUpperImageX, gUpperImageY, imageWidth, imageHeight, o1ImageX, o1ImageY, imageWidth, imageHeight) == true){
      gUpperImageXVelocity = -gUpperImageXVelocity;
      UpperImageYVelocity = -gUpperImageYVelocity;
