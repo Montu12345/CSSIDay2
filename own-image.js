@@ -2,7 +2,7 @@ let gUpperImageX
 
   function setup() {
   createCanvas(800, 600);
-  // We only want to load the logo once.
+  // load in the images
   gUpperImage= loadImage("https://cdn.glitch.com/2fa96652-1fec-47f6-a2a7-568ba1599edf%2FbigG.png?v=1594166469326");
   o1Image= loadImage("https://cdn.glitch.com/2fa96652-1fec-47f6-a2a7-568ba1599edf%2FredO.png?v=1594166470059");
   o2Image= loadImage("https://cdn.glitch.com/2fa96652-1fec-47f6-a2a7-568ba1599edf%2FyellowO.png?v=1594166480081");
@@ -10,11 +10,14 @@ let gUpperImageX
   lImage= loadImage("https://cdn.glitch.com/2fa96652-1fec-47f6-a2a7-568ba1599edf%2Fl.png?v=1594166490024");
   eImage= loadImage("https://cdn.glitch.com/2fa96652-1fec-47f6-a2a7-568ba1599edf%2Fe.png?v=1594166492578");
   
+  //setting dimentions of the image
   imageWidth = 50;
   imageHeight = 50;
   
+  //setting master velocity
   masterVelocity = 3;
   
+  //placing the images at random locations on the canvas; gUpper = G, o1 = o, o2 = o, gLower = g, l = l, e = e
   gUpperImageX = Math.floor((Math.random() * (width - imageWidth) + 1));
   gUpperImageY = Math.floor((Math.random() * (height - imageHeight) + 1));
   gUpperImageXVelocity = masterVelocity;
@@ -47,21 +50,18 @@ let gUpperImageX
       
 }
 
+// checks if the images collide with each other
  function rectIntersect(x1TopLeftCoord, y1TopLeftCoord, w1, h1, x2TopLeftCoord, y2TopLeftCoord, w2, h2) {
-    // Check x and y for overlap
     if (x2TopLeftCoord > w1 + x1TopLeftCoord || x1TopLeftCoord > w2 + x2TopLeftCoord || y2TopLeftCoord > h1 + y1TopLeftCoord || y1TopLeftCoord > h2 + y2TopLeftCoord){
         return false;
     }
     return true;
 }
 
-
-
-
  function draw(){
    background(220);
    
-   //gUpper
+   //if the x/y-position of the gUpper is outside of the canvas dimentions, make the image bounce back by changing the velocity
    if(gUpperImageX < 0){
      gUpperImageXVelocity = masterVelocity;
    }
@@ -78,7 +78,7 @@ let gUpperImageX
    gUpperImageX += gUpperImageXVelocity;
    gUpperImageY += gUpperImageYVelocity;
    
-   //o1
+   //if the x/y-position of the o1 is outside of the canvas dimentions, make the image bounce back by changing the velocity
    if(o1ImageX < 0){
      o1ImageXVelocity = masterVelocity;
    }
@@ -96,7 +96,7 @@ let gUpperImageX
    o1ImageY += o1ImageYVelocity;
    
    
-   //o2
+   //if the x/y-position of the o2 is outside of the canvas dimentions, make the image bounce back by changing the velocity
    if(o2ImageX < 0){
      o2ImageXVelocity = masterVelocity;
    }
@@ -113,7 +113,7 @@ let gUpperImageX
    o2ImageX += o2ImageXVelocity;
    o2ImageY += o2ImageYVelocity*0.5;
    
-   //gLower
+   //if the x/y-position of the gLower is outside of the canvas dimentions, make the image bounce back by changing the velocity
    if(gLowerImageX < 0){
      gLowerImageXVelocity = masterVelocity;
    }
@@ -130,7 +130,7 @@ let gUpperImageX
    gLowerImageX += gLowerImageXVelocity*2;
    gLowerImageY += gLowerImageYVelocity*0.75;
    
-   //l
+   //if the x/y-position of the l is outside of the canvas dimentions, make the image bounce back by changing the velocity
    if(lImageX < 0){
      lImageXVelocity = masterVelocity;
    }
@@ -147,7 +147,7 @@ let gUpperImageX
    lImageX += lImageXVelocity*3;
    lImageY += lImageYVelocity*0.9;
    
-   //e
+   //if the x/y-position of the e is outside of the canvas dimentions, make the image bounce back by changing the velocity
    if(eImageX < 0){
      eImageXVelocity = masterVelocity;
    }
@@ -164,8 +164,7 @@ let gUpperImageX
    eImageX += eImageXVelocity*1.2;
    eImageY += eImageYVelocity; 
    
-   
-   
+   //showing the image
    image(gUpperImage, gUpperImageX, gUpperImageY, imageWidth, imageHeight);
    image(o1Image, o1ImageX, o1ImageY, imageWidth, imageHeight);
    image(o2Image, o2ImageX, o2ImageY, imageWidth, imageHeight);
@@ -174,7 +173,7 @@ let gUpperImageX
    image(eImage, eImageX, eImageY, imageWidth, imageHeight);
    
    
-   //detecting collisions:
+   //detecting collisions between the images:
    if (rectIntersect(gUpperImageX, gUpperImageY, imageWidth, imageHeight, o1ImageX, o1ImageY, imageWidth, imageHeight) == true){
      gUpperImageXVelocity = -gUpperImageXVelocity;
      UpperImageYVelocity = -gUpperImageYVelocity;
